@@ -1,0 +1,81 @@
+﻿@model List<Playlist>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #0d0d0d 30%, #1e1e1e 100%); /* Gradient background */
+        color: #e0e0e0; /* Light gray for text */
+        font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #ffd700; /* Gold color for headings */
+        font-size: 2.5em; /* Larger font size for emphasis */
+        animation: fadeIn 1s ease; /* Fade-in animation */
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .card {
+        background-color: #1e1e1e; /* Dark gray for card background */
+        border: none; /* No border */
+        border-radius: 10px; /* Rounded corners */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scale and shadow effect */
+        will-change: transform, box-shadow; /* Optimize for performance */
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.05); /* Lift and scale effect on hover */
+        box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7); /* Stronger gold shadow on hover */
+    }
+
+    .btn-custom {
+        background-color: #ffd700; /* Gold button background */
+        color: #121212; /* Dark text color */
+        border-radius: 5px; /* Slightly rounded corners for buttons */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
+    }
+
+    .btn-custom:hover {
+        background-color: #ffc107; /* Slightly darker gold on hover */
+        color: white; /* White text on hover */
+    }
+
+    .playlist-image {
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0; /* Rounded top corners */
+        transition: transform 0.3s ease; /* Smooth image scale */
+    }
+
+    .card:hover .playlist-image {
+        transform: scale(1.1); /* Scale image on card hover */
+    }
+</style>
+
+<div class="container mt-5">
+    <h2>Playlists for Your Mood</h2>
+    <div class="row">
+        @foreach (var playlist in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@playlist.ImageUrl" alt="@playlist.Name" class="playlist-image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@playlist.Name</h5>
+                        <a href="@playlist.PlaylistUrl" class="btn btn-custom" target="_blank">Listen on Spotify</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,99 @@
+﻿@model WeatherInfo
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+    body {
+        background-color: #121212; /* Dark background */
+        color: #e0e0e0; /* Light gray text */
+        font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    .card {
+        background-color: #1e1e1e; /* Dark card background */
+        border: none; /* No border */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); /* Gold shadow for depth */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7); /* Stronger shadow on hover */
+    }
+
+    .card-title {
+        color: #ffd700; /* Gold color for title */
+        font-size: 2em; /* Larger font size */
+        animation: fadeIn 0.5s ease; /* Fade-in animation */
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .card-text {
+        font-size: 1.2em; /* Slightly larger font for text */
+        animation: slideIn 0.5s ease; /* Slide-in animation */
+    }
+
+    @@keyframes slideIn {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .btn-custom {
+        background-color: #ffd700; /* Gold background for the button */
+        color: #121212; /* Dark text color */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    }
+
+    .btn-custom:hover {
+        background-color: #ffc107; /* Darker gold on hover */
+        color: white; /* White text on hover */
+    }
+
+    .select-mood {
+        width: 50%;
+        margin: 20px auto; /* Center the select dropdown */
+        border-radius: 10px; /* Rounded corners for select */
+        background-color: #2b2b2b; /* Darker background for select */
+        color: #ffd700; /* Gold text color */
+        border: 1px solid #ffd700; /* Gold border */
+    }
+
+    .select-mood option {
+        background-color: #2b2b2b; /* Dark background for options */
+        color: #ffd700; /* Gold text for options */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body text-center">
+            <h3 class="card-title">Current Weather in @Model.City</h3>
+            <p class="card-text">Condition: @Model.Condition</p>
+            <p class="card-text">Temperature: @Model.Temperature°C</p>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <h4>Select Your Mood:</h4>
+        <form method="post" action="/Home/MoodSelection">
+            <div class="form-group">
+                <select name="mood" class="form-control select-mood">
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="relaxed">Relaxed</option>
+                    <option value="energetic">Energetic</option>
+                    <option value="angry">Angry</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-custom">Get Playlist</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
